@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/actions/*": ["./src/actions/*"],
+      "@/services/*": ["./src/services/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/configs/*": ["./src/configs/*"],
+      "@/constants/*": ["./src/constants/*"],
+      "@/reducers/*": ["./src/reducers/*"],
+      "@/scss/*": ["./src/scss/*"],
+      "@/static/*": ["./src/static/*"],
+      "@/utils/*": ["./src/utils/*"]
+    }
+  }
+}

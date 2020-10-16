@@ -1,0 +1,97 @@
+@charset "UTF-8";
+//-----------------------------------------------------
+// variables scss
+//-----------------------------------------------------
+
+//-----------------------------------------------------
+$cvs:                 '0413'; //自定义图片路径的版本号
+
+// font相关
+//-----------------------------------------------------
+$fontSize:            24px !default;
+$fontFamily:          "PingFang SC","Noto SansCJK SC", roto, arial, sans-serif !default;
+                      // 苹方
+$fontCn:              "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", "Source Han Sans CN" sans-serif !default;
+$fontEn:              -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Roboto, "Droid Sans", "Seogoe UI", Arial !default;
+
+
+// 背景色，文本色，边框色，链接色
+$colorPrimary:       #353db7 !default; // 主题色
+$colorText:          #49496a !default; // 文本默认色
+$colorSubText:       #9ca3ba !default; // 辅助文本默认色
+$colorDisabled:      #acb3c7 !default; // 不可用状态 color
+$colorBorder:        #f0f0f0 !default; // 线条色
+$colorBorderLight:   #eeeeee !default; // 浅线条色
+// Bg
+$bgPrimary:          #f8f8f8 !default; // 背景色
+$bgInputPrimary:     #f0f0f0 !default; // 搜索框，输入框背景
+
+$colorAssist:        #83899f !default; // 说明文字
+$colorLabel:         #9ca3ba !default; // 标签名称
+$colorPlaceholder:   #9ca3ba !default; // input|textarea placeholder color
+
+$colorYellow:        #FEC816 !default; // 黄色
+$colorRed:           #ff2d3f !default;
+$colorBlue:          #0998F1 !default; // 浅蓝
+$colorViolet:        #7b6ef9 !default; // 紫罗兰
+$colorGreen:         #23BA4E !default; // 绿色
+$colorOrange:        #FF5111 !default; // 橙色
+$colorGrey:          #9BA2B8 !default; // 灰色
+
+// 元素上下间距
+//-----------------------------------------------------
+$gap:                  20px !default; // 默认的元素上下间隔距离
+$lrSpace:              30px !default; // 默认的左右布局间距
+$tagSpace:             30px !default; // 标签间距
+
+// header,footer等的高度
+//-----------------------------------------------------
+$barHeight:            88px !default;
+$tabBarHeight:         98px !default;
+$navHeight:            88px !default;
+
+// radius
+//-----------------------------------------------------
+$radiusBase:           10px !default; // 默认圆角大小
+$radiusMini:           4px !default; // 小号圆角（按钮）
+$radiusSmall:          6px !default; //
+$radiusCircle:         50% !default; // 圆
+
+
+// z-index
+// 大层级z-index设置，页面内使用的层级值请低于555
+$modalZindex:          999 !default;
+$toastZindex:          999 !default; // 层级应该是最大的
+$layerModalZindex:     888 !default;
+$layerZindex:          666 !default;
+$barZindex:            555 !default; // 一般情况下层级低于layer的
+$defaultZindex:        111 !default; // 最低层
+
+
+
+// 定义按钮大小及颜色的默认变量
+//-----------------------------------------------------
+$btnSize:             (mini: 20px, small: 24px, medium: 28px, large: 30px, maxinum: 30px) !default; //默认按钮大小
+$iconSpace:           10px !default; // 图标默认间距
+$bgBtnDefault:      #f2f2f2 !default; // 默认按钮背景色
+$colorBtnDefault:   #666666 !default; // 默认按钮字体色
+
+// 定义标签大小及颜色的默认变量
+//-----------------------------------------------------
+$tagSize:             (mini: 18px, small: 36px, medium: 56px , large: 60px) !default; //默认大小
+$tagBgColor:        #cccccc #ff2d3f #0998f1 #23BA4E #353db7 #fd5f00 #fec816 #9ba2b8 #7b6ef9  !default; // tag类型的背景色
+
+// 定义卡片的默认变量
+//-----------------------------------------------------
+$cardHeaderMinHeight: 88px !default; // header高度或内容元素之间的默认间距或标题块最小高度
+$cardFooterMinHeight: 88px !default; // footer高度
+$cardItemHeight:      60px !default; // 内容元素的行高或标题块内容元素的行高
+
+// 定义通用header的默认变量
+//-----------------------------------------------------
+$borderBottomSwitch:  true; // 判断是否加border的开关
+$headerHeight:        88px !default; // header高度
+$headerBgColor:     #ffffff !default; // header背景色
+$headerTextColor:     $colorText !default; // header字体色
+$headerTabTtSwitch:   true !default; // header切换栏开关
+$headerMultiTtSwitch: true !default; // header多行标题开关

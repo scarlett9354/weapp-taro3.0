@@ -1,0 +1,315 @@
+@import './_variables.scss';
+
+//给img加版本号
+@mixin img-url($imgurl) {
+  background-image: url(#{$imgurl}?t=#{$cvs});
+}
+
+// 背景 除背景图片
+@mixin background-rest($size: 100% 100%, $position: center, $repeat: no-repeat) {
+  background-repeat: $repeat;
+  background-position: $position;
+  background-size: $size;
+}
+
+// 背景
+@mixin background($imgurl, $size: 100% 100%, $position: center, $repeat: no-repeat) {
+  @include img-url($imgurl);
+  @include background-rest($size, $position, $repeat)
+}
+
+// 省略号 $line: 行数 默认 1
+@mixin ellipsis($line: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @if $line <= 1 {
+    white-space: nowrap;
+  }
+  @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $line;
+    -webkit-box-orient: vertical;
+  }
+}
+
+/*------------------flex布局等分--------------------- */
+
+/*
+【百分比等分布局，可多行，可单行，可加间距】
+* $columnNum 列数, 默认是2
+* $gap 间距, 默认是30px
+* $lrGap 的间距要减去$gap的一半, 默认是15px
+* $lr 左右边缘是否有间距, 默认是false
+* $wrap 是否换行，默认是false
+* $children 子元素class|标签（li div p a span strong）
+*/
+
+@mixin equal-flex-percent( $columnNum: 2, $gap: 30px, $lrGap: 15px, $lr: false, $wrap: false, $children: li) {
+  display: flex;
+  $childrenEle: li div p a span strong;
+  @if $lr {
+    // 左右边缘是否有gap
+    padding-left: $lrGap;
+    padding-right: $lrGap;
+  }
+  @else {
+    margin-left: -$gap/2;
+    margin-right: -$gap/2;
+  }
+  @if $wrap {
+    // 是否换行
+    flex-wrap: wrap;
+  }
+  @if index($childrenEle, $children) {
+    // 常用元素
+    #{$children} {
+      width: 100% / $columnNum;
+      padding: 0 $gap/2;
+    }
+  }
+  @else {
+    .#{$children} {
+      // 自动加.成class
+      width: 100% / $columnNum;
+      padding: 0 $gap/2;
+    }
+  }
+}
+/*
+【
+  flex等分布局, 不可多行
+  仅适用于两种情况的布局，
+  1. 单行宽度等分自适应，默认无间距
+  2. 单行宽度自适应, 间距等分
+ 】
+* $children 子元素class|标签（li div p a span strong）
+* $equal 子元素宽度是否等分，默认false
+*/
+
+@mixin equal-flex($children: li, $equal: false) {
+  display: flex;
+  justify-content: space-between;
+  &:before,
+  &:after {
+    content: "";
+  }
+  $childrenEle: li div p a span strong;
+  @if index($childrenEle, $children) {
+    // 常用元素
+    #{$children} {
+      @if $equal {
+        flex: 1;
+      }
+    }
+  }
+  @else {
+    .#{$children} {
+      // 自动加.成class
+      @if $equal {
+        flex: 1;
+      }
+    }
+  }
+}
+
+/*------------------------tag--------------------------*/
+
+/*
+【tag大小】
+* $padding 设置元素左右间距
+* $height 设置元素的高
+* $radius 设置圆角
+*/
+
+@mixin tag-size($padding: 12px, $height: 30px, $radius: $radiusBase) {
+  padding: 0 $padding;
+  line-height: $height;
+  @if $radius {
+    border-radius: $radius;
+  }
+}
+
+/*
+【tag颜色】
+* $colorText 字体颜色
+* $colorBg 背景颜色
+* $colorBorder border颜色
+*/
+
+@mixin tag-color($colorText: #999999, $colorBg: #ffffff, $colorBorder: #cccccc) {
+  color: nth($colorText, 1);
+  background-color: nth($colorBg, 1);
+  border-color: nth($colorBorder, 1);
+}
+
+/*-------------------------button-----------------------*/
+
+/*
+【btn大小】
+* $padding 设置元素左右间距
+* $height 设置元素的高
+* $radius 设置圆角
+*/
+
+@mixin btn-size($paddingTB: 6px, $paddingLR: 16px, $lineHeight: 20px, $radius: $radiusBase) {
+  line-height: $lineHeight;
+  padding: $paddingTB - 2px $paddingLR;
+  @if $radius {
+    border-radius: $radius;
+  }
+}
+
+/*
+【btn颜色】
+* $colorText 字体颜色
+* $colorBg 背景颜色
+* $colorBorder border颜色
+*/
+
+@mixin btn-color($colorText: #666666, $colorBg: #ffffff, $colorBorder: #999999) {
+  color: nth($colorText, 1);
+  background-color: nth($colorBg, 1);
+  border-color: nth($colorBorder, 1);
+}
+
+// v arrow 方向箭头 - 线性箭头
+@mixin v-arrow($direction: right, $borderWidth: 2px, $size: 18px, $borderColor: #000) {
+  display: inline-block;
+  vertical-align: middle;
+  width: $size;
+  height: $size;
+  @if $direction==top {
+    border-top: $borderWidth solid $borderColor;
+    border-right: $borderWidth solid $borderColor;
+    transform: rotate(-45deg);
+  }
+  @else if $direction==right {
+    border-top: $borderWidth solid $borderColor;
+    border-right: $borderWidth solid $borderColor;
+    transform: rotate(45deg);
+  }
+  @else if $direction==bottom {
+    border-left: $borderWidth solid $borderColor;
+    border-bottom: $borderWidth solid $borderColor;
+    transform: rotate(-45deg);
+  }
+  @if $direction==left {
+    border-left: $borderWidth solid $borderColor;
+    border-bottom: $borderWidth solid $borderColor;
+    transform: rotate(45deg);
+  }
+}
+
+// Triangle
+@mixin triangle($direction, $size, $borderColor) {
+  content: "";
+  height: 0;
+  width: 0;
+  @if $direction==top {
+    border-bottom: $size solid $borderColor;
+    border-left: $size dashed transparent;
+    border-right: $size dashed transparent;
+  }
+  @else if $direction==right {
+    border-left: $size solid $borderColor;
+    border-top: $size dashed transparent;
+    border-bottom: $size dashed transparent;
+  }
+  @else if $direction==bottom {
+    border-top: $size solid $borderColor;
+    border-left: $size dashed transparent;
+    border-right: $size dashed transparent;
+  }
+  @else if $direction==left {
+    border-right: $size solid $borderColor;
+    border-top: $size dashed transparent;
+    border-bottom: $size dashed transparent;
+  }
+}
+
+// v triangle 方向箭头 - 实心箭头
+@mixin v-triangle($direction: right, $borderWidth: 11px, $borderColor: currentColor) {
+  display: inline-block;
+  border: solid transparent;
+  border-width: $borderWidth;
+  @if $direction==top {
+    border-bottom-color: $borderColor;
+  }
+  @else if $direction==right {
+    border-left-color: $borderColor;
+  }
+  @else if $direction==bottom {
+    border-top-color: $borderColor;
+  }
+  @if $direction==left {
+    border-right-color: $borderColor;
+  }
+}
+
+// translate center
+@mixin center-translate($direction: both) {
+  position: absolute;
+  @if $direction==both {
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+  @else if $direction==x {
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+  }
+  @else if $direction==y {
+    top: 50%;
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+/*------------------------title-block--------------------------*/
+
+/*
+【标题块的边距及border的开关设置】
+* $lrGap 设置标题块左右的外间距
+* $lrSpace 设置标题块的左右内间距
+* $lrM  外边距开关
+* $lrPd 内边距开关
+* $borderBottom 下border开关
+* $borderTop 上border开关
+*/
+
+@mixin title-block( $lrGap: 30px, $lrSpace: 30px, $lrM: false, $lrPd: true, $borderBottom: true, $borderTop: false) {
+  @if $lrM {
+    margin-left: $lrGap;
+    margin-right: $lrGap;
+  }
+  @if $lrPd {
+    padding-left: $lrSpace;
+    padding-right: $lrSpace;
+  }
+  @if $borderBottom {
+    border-bottom: 1px solid $colorBorder;
+  }
+  @if $borderTop {
+    border-top: 1px solid $colorBorder;
+  }
+}
+
+// 垂直居中
+@mixin middle($width, $height) {
+  width: $width;
+  height: $height;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: (- $width / 2);
+  margin-top: (- $height / 2);
+}
+
+// 通用的遮罩
+ @mixin overlay {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: rgba($color: #000, $alpha: 0.3);
+}
