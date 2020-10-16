@@ -1,8 +1,8 @@
 {
-  "name": "weapp-samsung-mall",
+  "name": "weapp-taro3.0",
   "version": "1.0.0",
   "private": true,
-  "description": "三星积分商城",
+  "description": "taro3.0项目",
   "templateInfo": {
     "name": "redux",
     "typescript": false,

@@ -14,7 +14,7 @@ const sassImporter = function(url) {
 }
 
 const config = {
-  projectName: 'weapp-samsung-mall',
+  projectName: 'weapp-taro3.0',
   date: '2020-10-15',
   designWidth: 750,
   deviceRatio: {
