@@ -2,7 +2,7 @@
 module.exports = {
   env: {
     NODE_ENV: '"test"',
-    BASE_URL: '"https://xxx.com"',
+    BASE_URL: '"https://syycarowner-test.rocogz.com"',
   },
   defineConstants: {
   },

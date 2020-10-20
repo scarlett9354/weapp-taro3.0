@@ -1,6 +1,10 @@
-.index {
+@import "@/scss/utils/_mixin.scss";
+
+.wrap {
   flex-direction: column;
   width: 100%;
-  color: red;
+  // color: red;
   border-radius: 50%;
+  // font-size: 24px;
+  // @extend %ellipsis;
 }

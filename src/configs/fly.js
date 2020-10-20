@@ -14,7 +14,13 @@ if(process.env.TARO_ENV === 'h5') {
 // 全局配置
 const fly = new Fly
 fly.config.timeout = 10000
-fly.config.baseURL = BASE_URL
+if(process.env.TARO_ENV === 'h5') {
+  if(process.env.NODE_ENV !== 'development') {
+    fly.config.baseURL = BASE_URL
+  }
+}else {
+  fly.config.baseURL = BASE_URL
+}
 fly.config.withCredentials = true
 fly.interceptors.request.use(request => {
   Taro.showLoading({

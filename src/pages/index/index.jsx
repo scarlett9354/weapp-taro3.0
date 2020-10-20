@@ -2,21 +2,16 @@ import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import IndexService from '@/services/index/index'
-
 import styles from './index.scss'
 
 class Index extends Component {
-  componentWillMount() {
+  componentDidMount() {
     Taro.login({
       success: (res) => {
         console.log(res.code)
         this.getTest(res.code)
       }
     })
-  }
-
-  componentWillReceiveProps (nextProps) {
-    console.log(this.props, nextProps)
   }
 
   async getTest(code) {
@@ -29,14 +24,19 @@ class Index extends Component {
     Taro.hideLoading()
   }
 
+  goUser() {
+    Taro.navigateTo({
+      url: '/pages/user/index'
+    })
+  }
+
   render () {
     return (
-      <View className={styles.index}>
-        Hello, 首页
+      <View onClick={this.goUser} className={styles.wrap}>
+        Hello, 首页2
       </View>
     )
   }
 }
 
 export default Index
-

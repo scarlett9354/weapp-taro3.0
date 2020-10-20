@@ -1,8 +1,8 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "weapp-taro3.0",
-	"description": "taro3.0项目",
-	"appid": "xxx",
+	"projectname": "weapp-samsung-mall",
+	"description": "三星积分商城",
+	"appid": "wx7db449fb43ffc79a",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,

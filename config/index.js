@@ -14,7 +14,7 @@ const sassImporter = function(url) {
 }
 
 const config = {
-  projectName: 'weapp-taro3.0',
+  projectName: 'weapp-samsung-mall',
   date: '2020-10-15',
   designWidth: 750,
   deviceRatio: {
@@ -77,19 +77,57 @@ const config = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    output: {
+      filename: 'js/[name].[hash:8].js',
+      chunkFilename: 'js/[name].[chunkhash:8].js'
+    },
+    enableExtract: true,
+    miniCssExtractPluginOption: {
+      filename: 'css/[name].[hash:8].css',
+      chunkFilename: 'css/[id].[chunkhash:8].css'
+    },
+    router: {
+      mode: 'browser',
+      customRoutes: {
+        '/pages/index/index': '/index.html',
+        '/pages/user/index': '/user.html'
+      }
+    },
     postcss: {
       autoprefixer: {
         enable: true,
         config: {
         }
       },
-      cssModules: {
-        enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
+      pxtransform: {
+        enable: true,
         config: {
-          namingPattern: 'module', // 转换模式，取值为 global/module
+          /* pxtransform 配置项 */
+        }
+      },
+      cssModules: {
+        enable: true, // 默认为 false，如需使用 css modules 功能，则设为 true
+        config: {
+          namingPattern: 'global', // 转换模式，取值为 global/module
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
+    },
+    webpackChain (chain) {
+      chain.merge({
+        //警告 webpack 的性能提示
+        performance: {
+          hints: 'warning',
+          // 入口起点的最大体积
+          maxEntrypointSize: 50000000,
+          // 生成文件的最大体积
+          maxAssetSize: 30000000,
+          // 只给出 js 文件的性能提示
+          assetFilter: function(assetFilename) {
+            return assetFilename.endsWith('.js')
+          }
+        }
+      })
     }
   }
 }
